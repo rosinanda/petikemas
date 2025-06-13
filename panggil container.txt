@@ -1,0 +1,23 @@
+ <select name="party">
+															
+														<?php
+																$query = "SELECT * FROM container";
+																$result = mysql_query($query);  
+																	while($row=mysql_fetch_array($result)){                                                 
+																	echo "<option value='".$row[size_container]."'>".$row[size_container]."</option>";
+																	}
+																?>          
+														  </select>
+															
+															
+															Type
+															<select name="Type">
+															
+														<?php
+																$query = "SELECT * FROM container";
+																$result = mysql_query($query);  
+																	while($row=mysql_fetch_array($result)){                                                 
+																	echo "<option value='".$row[type_container]."'>".$row[type_container]."</option>";
+																	}
+																?>          
+														  </select>

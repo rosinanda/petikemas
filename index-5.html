@@ -1,0 +1,272 @@
+<?php
+include "connection.php";
+?>
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Home</title>
+    <meta charset="utf-8">    
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" href="img/l.png" type="image/x-icon">
+    <link rel="shortcut icon" href="img/l.png" type="image/x-icon" />
+    <meta name = "format-detection" content = "telephone=no" />
+    <meta name="description" content="Your description">
+    <meta name="keywords" content="Your keywords">
+    <meta name="author" content="Your name">
+    <link rel="stylesheet" href="css/bootstrap.css" >
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/camera.css">
+    
+	<script src="js/jquery.js"></script>
+    <script src="js/jquery-migrate-1.2.1.js"></script>
+    <script src="js/superfish.js"></script>
+    <script src="js/jquery.mobilemenu.js"></script>
+    <script src="js/jquery.easing.1.3.js"></script>
+    <script src="js/jquery.ui.totop.js"></script>
+    <script src="js/jquery.touchSwipe.min.js"></script>
+    <script src="js/jquery.equalheights.js"></script>
+    
+         
+    <script src='js/camera.js'></script>
+    <!--[if (gt IE 9)|!(IE)]><!-->
+        <script src="js/jquery.mobile.customized.min.js"></script>
+    <!--<![endif]-->
+    
+    <script>	
+        $(window).load( function(){	
+            
+        	   jQuery('.camera_wrap').camera();	 
+               
+        });
+    </script>
+    
+
+    
+    <!--[if lt IE 9]>
+    <div style='text-align:center'><a href="http://windows.microsoft.com/en-US/internet-explorer/products/ie/home?ocid=ie6_countdown_bannercode"><img src="http://storage.ie6countdown.com/assets/100/images/banners/warning_bar_0000_us.jpg" border="0" height="42" width="820" alt="You are using an outdated browser. For a faster, safer browsing experience, upgrade for free today." /></a></div>  
+    <link rel="stylesheet" href="assets/tm/css/tm_docs.css" type="text/css" media="screen">
+    <script src="assets/assets/js/html5shiv.js"></script> 
+    <script src="assets/assets/js/respond.min.js"></script>
+  <![endif]-->
+  
+  
+</head>
+<body>
+<!--header-middle-->
+<div class="header-middle">
+			<div class="container">
+				<div class="row">
+					<div class="col-sm-12">
+						<div class="shop-menu pull-right">
+							<ul class="nav navbar-nav">
+								<li><a style="cursor:pointer;" onclick="login(1)" data-toggle="modal" data-target="#new">New Shipper</a></li>
+								<div id="new" class="modal fade" role="dialog">
+									<div class="modal-dialog">
+										<div class="modal-content">
+											<div class="modal-header">
+											<h2>New Shipper Sign Up!</h2>
+											</div>
+											<div class="modal-body">
+												<div class="tab-content">
+														<input type="hidden" id="insert_table" value="customer">
+													<div class="signup-form"><!--sign up form-->
+														
+														<form method="post" id="insertCustomer" enctype="multipart/form-data" role="form">
+													<div class="form-group">
+														<label class="col-sm-4 control-label">Name</label>
+													<div class="col-sm-8">
+														<input type="text" class="form-control" name="name_shipper" placeholder="Shipper Name" required>
+													</div>
+													</div>
+													
+													<div class="form-group">
+														<label class="col-sm-4 control-label">Address</label>
+													<div class="col-sm-8">
+														<input type="text" class="form-control" name="ads_shipper" placeholder="Shipper Address">
+													</div>
+													</div>
+													
+													<div class="form-group">
+														<label class="col-sm-4 control-label">City</label>
+														<div class="col-sm-8">
+														 <select>
+														<?php
+																$query = "SELECT * FROM city";
+																$result = mysql_query($query);  
+																	while($row=mysql_fetch_array($result)){                                                 
+																	echo "<option value='".$row[kode_city]."'>".$row[name_city]."</option>";
+																	}
+																?>          
+															</select>
+														</div>
+													</div>
+													&nbsp;
+													<div class="form-group">
+														<label class="col-sm-4 control-label">No. Tlp</label>
+													<div class="col-sm-8">
+														<input type="text" class="form-control" name="tlp_shipper" placeholder="Shipper Phone">
+													</div>
+													</div>
+													
+													<div class="form-group">
+														<label class="col-sm-4 control-label">Fax</label>
+														<div class="col-sm-8">
+															<textarea class="form-control" type="text" name="fax_shipper" placeholder="Shipper Fax" required></textarea>
+														</div>
+													</div>
+
+
+													&nbsp;
+													<div class="form-group">
+														<label class="col-sm-4 control-label">PIC Name</label>
+														<div class="col-sm-8">
+														<input type="text" class="form-control" name="pic_shipper" placeholder="PIC">
+														</div>
+													</div>
+													<div class="form-group">
+														<label class="col-sm-4 control-label">No. Tlp PIC</label>
+														<div class="col-sm-8">
+															<input type="text" class="form-control" name="tlppic_shipper" placeholder="PIC Phone" required>
+														</div>
+													</div>
+													&nbsp;
+													&nbsp;
+														<div class="form-group">
+														<label class="col-sm-4 control-label">Username</label>
+														<div class="col-sm-8">
+															<input type="text" class="form-control" name="username_shipper">
+														</div>
+													</div>
+													<div class="form-group">
+														<label class="col-sm-4 control-label">E-mail</label>
+														<div class="col-sm-8">
+															<input type="email" class="form-control" name="email_shipper" placeholder="Your E-mail" required>
+														</div>
+													</div>
+													<div class="form-group">
+														<label class="col-sm-4 control-label">Password</label>
+														<div class="col-sm-8">
+															<input type="password" class="form-control" name="password_shipper">
+														</div>
+													</div>
+													
+														<input type="submit" name="regis" class="btn btn-default" value="Register">
+												</form>
+											</div><!--/sign up form-->
+									</div><!--/tab content-->
+										</div>
+										
+										<div class="modal-footer">
+										<button type="button" class="btn btn-default" data-dismiss="modal"> Close</button> 
+										</div>
+										</div>
+										</div>
+										</div>
+										
+										
+				  				<li><a style="cursor:pointer;" onclick="login(1)" data-toggle="modal" data-target="#login">Login</a></li>
+								
+								<div id="login" class="modal fade" role="dialog">
+									<div class="modal-dialog">
+										<div class="modal-content">
+										<div class="modal-header">
+											<h2>Login Shipper!</h2>
+											</div>
+											<div class="modal-body">
+												<div class="tab-content">
+														<input type="hidden" id="insert_table" value="customer">
+													<div class="signup-form"><!--sign up form-->
+														
+														<form method="post" id="log" enctype="multipart/form-data" role="form">
+													<div class="form-group">
+														<label class="col-sm-4 control-label">Username</label>
+													<div class="col-sm-8">
+														<input type="text" class="form-control" name="username_shipper" placeholder="Username" required>
+													</div>
+													</div>
+													
+													<div class="form-group">
+														<label class="col-sm-4 control-label">Password</label>
+													<div class="col-sm-8">
+														<input type="password" class="form-control" name="password_shipper" placeholder="Password">
+													</div>
+													</div>
+													<button type="submit" class="btn btn-default">Login</button>
+													
+												</form>
+											</div><!--/sign up form-->
+									</div><!--/tab content-->
+										</div>
+										<div class="modal-footer">
+										<button type="button" class="btn btn-default" data-dismiss="modal"> Close</button> 
+										</div>
+										</div>
+										</div>
+										</div>
+								
+							</ul>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+		<!--/header-middle-->
+
+<!--==============================header===========================================================================================================-->
+<header id="header">
+      <div class="container">
+        <h1 class="navbar-brand navbar-brand_"><a href="index.html"><img alt="Grill point" src="img/logo.png"></a></h1>
+      </div>
+</header>
+<!--==============================content=================================-->
+<div id="content">
+    <!--==============================row9=================================-->
+    <div class="row_9">
+        <div class="container">
+            <div class="row privacy_page">
+                <div class="col-lg-4 col-md-4 col-sm-4">
+                    <h2>Terms Of Use</h2>
+                    <p>Praesent vestibulum molestie lacus. Aenean nonummy hendrerit mauris. Phasellus porta. Fusce suscipit varius mi. Cum sociis natoque penati et magnis dis parturient montes, nascetur ridiculus mus. Fusce feugiat malesuada odio.</p>
+                    <p>Morbi nunc odio, gravida at, cursus nec, luctus a, lorem. Maecenas tristique orci ac sem. Duis ultri cies pharetra magna. Donec accumsan male suada orci. Donec sit amet eros. Lorem ipsum dolor sit amet, consectetuer adipiscing elit. </p>
+                    <p>Mauris fermentum dictum magna. Sed laoreet aliquam leo. Ut tellus dolor, dapibus eget, elementum vel, Ut tellus dolor, dapibus cursus eleifend, elit. Aenean auctor wisi et urna. Aliquam erat volutpat. Duis ac turpis. Integer rutrum ante eu lacus.</p>
+                </div>   
+                <div class="col-lg-8 col-md-8 col-sm-8">
+                    <h2>Privacy Policy</h2>
+                    <h3>Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium dolore</h3>
+                    <p class="m_bot4">Praesent vestibulum molestie lacus. Aenean nonummy hendrerit mauris. Phasellus porta. Fusce suscipit varius mi. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Nulla dui. Fusce feugiat malesuada odio. Morbi nunc odio, gravida at, cursus nec, luctus a, lorem. Maecenas tristique orci ac sem. Duis ultricies pharetra magna. Donec accumsan malesuada orci. Donec sit amet eros. Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Mauris fermentum dictum magna. Sed laoreet aliquam leo.</p>
+                    <h3>Neque porro quisquam est, qui dolorem ipsum quia dolor sit amet</h3>
+                    <p>Vestibulum iaculis lacinia est. Proin dictum elementum velit. Fusce euismod consequat ante. Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Pellentesque sed dolor. Aliquam congue fermentum nisl. Mauris accumsan nulla vel diam. Sed in lacus ut enim adipiscing aliquet. Nulla venenatis. In pede mi, aliquet sit amet, euismod in, auctor ut, ligula. Aliquam dapibus tincidunt metus. Praesent justo dolor, lobortis quis, lobortis dignissim.</p>
+                    <p>Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo. Nemo enim ipsam voluptatem quia voluptas sit aspernatur aut odit aut fugit, sed quia consequuntur magni dolores eos qui ratione voluptatem sequi nesciunt. Neque porro quisquam est, qui dolorem ipsum quia dolor.</p>
+                    <p>E-mail: <a href="#" class="privacy_link">info@demolink.org</a></p>
+                </div> 
+             </div> 
+        </div>
+    </div>
+</div>
+<!--==============================footer=================================-->
+<footer>
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-4 col-md-4 col-sm-4 footercol">
+                <ul class="social_icons clearfix">
+                     <li><a href="#"><img src="img/follow_icon1.png" alt=""></a></li>
+                     <li><a href="#"><img src="img/follow_icon2.png" alt=""></a></li>
+                     <li><a href="#"><img src="img/follow_icon3.png" alt=""></a></li>
+                     <li><a href="#"><img src="img/follow_icon4.png" alt=""></a></li>
+                </ul>
+            </div>
+            <div class="col-lg-4 col-md-4 col-sm-4 footerlogo footercol">
+                <a class="smalllogo2 logo" href="index.html"><img src="img/logofooter.png" alt=""></a>
+            </div>
+            <div class="col-lg-4 col-md-4 col-sm-4 footercol">
+                <p class="footerpriv">&copy; 2016 &bull; <a class="privacylink" href="index-5.html"> <a rel="nofollow" href="http://www.templatemonster.com/category.php?category=0&type=1" target="_blank"> PT Tresnamuda Sejati</a></p>
+            </div>
+        </div>
+    </div>
+</footer>
+<script src="js/bootstrap.min.js"></script>
+<script src="js/tm-scripts.js"></script>
+<!--Coded by corvus-->
+</body>
+</html>
