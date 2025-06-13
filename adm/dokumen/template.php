@@ -1,0 +1,125 @@
+<?php
+session_start();
+
+//cek apakah user sudah login
+if(!isset($_SESSION['username_emp'])){
+    die("Anda belum login");//jika belum login jangan lanjut..
+}
+
+//cek level user
+if($_SESSION['departemen']!="dokumen"){
+    die("Anda bukan dokumen");//jika bukan admin jangan lanjut
+}
+
+function printPage($title,$content){
+$per_page = 9;
+
+echo'
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="author" content="">
+	<link rel="icon" href="../../img/l.png" type="image/x-icon">
+    <link rel="shortcut icon" href="../../img/l.png" type="image/x-icon" />
+
+    <title> Dokumen </title>
+
+    <!-- Bootstrap Core CSS -->
+    <link href="../css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- Custom CSS -->
+    <link href="../css/sb-admin.css" rel="stylesheet">
+
+    <!-- Morris Charts CSS -->
+    <link href="../css/plugins/morris.css" rel="stylesheet">
+
+    <!-- Custom Fonts -->
+    <link href="../font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+
+    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesnt work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+        <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+        <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+	
+	<!-- AJAX -->
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.2/jquery.min.js"></script>
+	<script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
+	<script src="notif.js"></script>
+	<script src="notif1.js"></script>
+
+</head>
+
+<body>
+
+    <div id="wrapper">
+
+        <!-- Navigation -->
+        <nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
+            <!-- Brand and toggle get grouped for better mobile display -->
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-ex1-collapse">
+                    <span class="sr-only">Toggle navigation</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>                </button>
+                <h3>Welcome '.$_SESSION['username_emp'].'</h3>
+            </div>
+            
+			<!-- Top Menu Items -->
+            <ul class="nav navbar-right top-nav">
+			<li> <a href="#"><i class="fa fa-user"></i>'.$_SESSION['username_emp'].'</a> </li>
+			<li> <a href="../logout.php"><i class="fa fa-fw fa-power-off"></i> Log Out</a></li>
+			<li><a id="pesan" href="#"><i class="fa fa-bell"></i>Konfirmasi SI<span class="badge" id="jmlh" style="background-color:red;">0</span></a></li>
+                <div id="info">
+				<div id="konten-info">
+				</div>
+				</div>
+            <li><a id="pesan1" href="#"><i class="fa fa-bell"></i>Konfirmasi Kesesuaian Draft B/L <span class="badge" id="jmlh1" style="background-color:red;">0</span></a></li>
+                <div id="info1">
+				<div id="konten-info1">
+				</div>
+				</div>
+            </ul>
+			
+			
+            <!-- Sidebar Menu Items - These collapse to the responsive navigation menu on small screens -->
+            <div class="collapse navbar-collapse navbar-ex1-collapse">
+			
+                <ul class="nav navbar-nav side-nav">
+                    <li>
+                        <a href=""><i class="fa fa-fw fa-table"></i> Draft BL </a>                    </li>
+						<li>
+                        <a href=""><i class="fa fa-fw fa-table"></i> BL </a>                    </li>
+						<li>
+                        <a href=""><i class="fa fa-fw fa-table"></i> Manifest</a>                    </li>
+						<li>
+                        <a href=""><i class="fa fa-fw fa-edit"></i> Manage Kontainer/ Peti Kemas </a>                    </li>
+						<li>
+                        <a href=""><i class="fa fa-fw fa-edit"></i> Manage Keberangkatan Kapal</a>                    </li>
+						<li>
+                        <a href=""><i class="fa fa-fw fa-edit"></i> Manage Perusahaan Pelayaran Luar Negeri</a>                    </li>
+                </ul>
+            </div>
+            <!-- /.navbar-collapse -->
+        </nav>
+<div id="page-wrapper">
+ <div class="container-fluid">
+'.$content.'
+</div>
+</div>
+    </div>
+    <!-- /#wrapper -->
+	</body>
+
+</html>
+';
+}   
+?>
